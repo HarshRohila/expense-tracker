@@ -3,9 +3,14 @@ import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
 import { safeInnerHtml } from './utils/index.ts'
+// Import our custom CSS
+import './scss/styles.scss'
+// Import all of Bootstrap's JS
+import * as bootstrap from 'bootstrap'
 
 const html = `
 <div>
+  <button class="btn btn-primary">Primary button</button>
   <a href="https://vitejs.dev" target="_blank">
     <img src="${viteLogo}" class="logo" alt="Vite logo" />
   </a>
