@@ -1,7 +1,22 @@
-import { sanitize } from "../libs/htmlSanitizer";
+import { sanitize } from "../libs/htmlSanitizer"
 
-function safeInnerHtml(el: Element, htmlString: string) {
-		el.innerHTML = sanitize(htmlString)
+interface Hooks {
+  didInsertElement(el: Element): void
 }
 
-export { safeInnerHtml }
+function safeInnerHtml(el: Element, htmlString: string) {
+  el.innerHTML = sanitize(htmlString)
+}
+
+interface Template {
+  template: string
+  hooks?: Hooks
+}
+
+function renderTemplate(parentElement: Element, template: Template) {
+  safeInnerHtml(parentElement, template.template)
+  template.hooks?.didInsertElement(parentElement.firstElementChild!)
+}
+
+export { safeInnerHtml, renderTemplate }
+export type { Template }
