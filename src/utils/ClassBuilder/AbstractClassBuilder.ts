@@ -9,11 +9,27 @@ abstract class AbstractClassBuilder {
     this.className = initialClass
   }
 
+  navBar() {
+    return this
+  }
+
   primaryButton() {
     return this
   }
 
+  fluidContainer() {
+    return this
+  }
+
+  navbarBrand() {
+    return this
+  }
+
   build() {
+    return this.className
+  }
+
+  getClassName() {
     return this.className
   }
 }

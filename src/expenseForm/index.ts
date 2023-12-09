@@ -3,15 +3,20 @@ import type { Template } from "../utils"
 import { getClassBuilder } from "../utils/ClassBuilder"
 const expenseForm: Template = {
   template: `
-	<form>
-		<div class="mb-3" data-test="amount">
-			<label for="amountInput" class="form-label">Amount</label>
-			<input type="number" class="form-control" id="amountInput">
+		<div class="container-sm">
+			<form>
+				<fieldset>
+					<legend>Add Expense</legend>
+				</fieldset>
+				<div class="mb-3" data-test="amount">
+					<label for="amountInput" class="form-label">Amount</label>
+					<input type="number" placeholder="Enter number" class="form-control" id="amountInput" />
+				</div>
+				<button type="submit" class="${getClassBuilder().primaryButton().build()}">
+					Submit
+				</button>
+			</form>
 		</div>
-		<button type="submit" class="${getClassBuilder()
-      .primaryButton()
-      .build()}">Submit</button>
-	</form>
 	`,
   hooks: {
     didInsertElement(el: HTMLFormElement) {

@@ -8,7 +8,9 @@ const routeMap: Record<string, Template> = {
   "expense/add": expenseForm,
 }
 
-function getRoute(path: string) {
+function getTemplateForRoute(path: string) {
+  path = path.replace(/^#\//, "")
+
   if (!routeMap[path]) {
     throw Error(`No route found for path: ${path}`)
   }
@@ -17,11 +19,10 @@ function getRoute(path: string) {
 
 const Router = {
   init(parentElement: Element) {
-    renderTemplate(parentElement, getRoute(""))
+    renderTemplate(parentElement, getTemplateForRoute(window.location.hash))
 
     fromEvent(window, "hashchange").subscribe(() => {
-      const path = window.location.hash
-      const template = getRoute(path.replace(/^#\//, ""))
+      const template = getTemplateForRoute(window.location.hash)
 
       renderTemplate(parentElement, template)
     })
