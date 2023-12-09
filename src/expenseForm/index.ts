@@ -1,6 +1,7 @@
 import { fromEvent } from "../libs/rx"
-import type { Template } from "../utils"
+import { renderTemplate, type Template } from "../utils"
 import { getClassBuilder } from "../utils/ClassBuilder"
+import { CategoryDropdown } from "./categoryDropdown"
 const expenseForm: Template = {
   template: `
 		<div class="container-sm">
@@ -12,6 +13,7 @@ const expenseForm: Template = {
 					<label for="amountInput" class="form-label">Amount</label>
 					<input type="number" placeholder="Enter number" class="form-control" id="amountInput" />
 				</div>
+				<div class="category-dropdown mb-3"></div>
 				<button type="submit" class="${getClassBuilder().primaryButton().build()}">
 					Submit
 				</button>
@@ -20,6 +22,9 @@ const expenseForm: Template = {
 	`,
   hooks: {
     didInsertElement(el: HTMLFormElement) {
+      const cd = el.querySelector(".category-dropdown")
+      renderTemplate(cd!, CategoryDropdown)
+
       fromEvent(el, "submit").subscribe((ev) => {
         ev.preventDefault()
 
