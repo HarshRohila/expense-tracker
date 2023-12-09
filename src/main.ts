@@ -1,29 +1,23 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { renderTemplate, safeInnerHtml } from './utils/index.ts'
-// Import our custom CSS
-import './scss/styles.scss'
-// Import all of Bootstrap's JS
-import 'bootstrap'
-import { expenseForm } from './expenseForm/index.ts'
+import "./style.css"
+import { renderTemplate, safeInnerHtml } from "./utils/index.ts"
+import "./scss/styles.scss"
+import "bootstrap"
+import { expenseForm } from "./expenseForm/index.ts"
+import { AppHeader } from "./appHeader/index.ts"
 
 const html = `
-<div class="container">
-  <button class="btn btn-primary">Primary button</button>
-  <a href="https://vitejs.dev" target="_blank">
-    <img src="${viteLogo}" class="logo" alt="Vite logo" />
-  </a>
-  <a href="https://www.typescriptlang.org/" target="_blank">
-    <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-  </a>
-</div>
+  ${AppHeader.template}
+  <main>
+    <a href="/#/expenses/add">Add Expense</a>
+    <div class="container">
+      <button class="btn btn-primary">Primary button</button>
+    </div>
+  </main>
 `
 
-const appEl = document.querySelector<HTMLDivElement>('#app')
+const appEl = document.querySelector<HTMLDivElement>("#app")
 
 safeInnerHtml(appEl!, html)
-
 
 let containerEl = document.querySelector(".container")
 
